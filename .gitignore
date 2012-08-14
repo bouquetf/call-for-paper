@@ -1,7 +1,13 @@
-target/
+.project
 
 .classpath
 
-.project
+.settings/
 
-.settings
+target/
+
+webapp/.project
+
+webapp/.classpath
+
+webapp/target
