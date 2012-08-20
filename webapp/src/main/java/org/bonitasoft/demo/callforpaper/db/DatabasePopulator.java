@@ -22,27 +22,42 @@ import org.bonitasoft.demo.callforpaper.service.CfpService;
 		properties = { "connectionAttributes=;create=true" })
 public class DatabasePopulator {
 
-	private Cfp myCfp;
+	private Cfp aCfp;
+	private Cfp anotherCfp;
 
 	@Inject
 	private CfpService cfpService;
 
 	@PostConstruct
 	private void populateDB() {
-		myCfp = new Cfp();
-		myCfp.setCreationDate(new Date());
-		myCfp.setSubmitterEmail("spr@pebprunier.com");
-		myCfp.setSessionType("Conference");
-		myCfp.setSessionTitle("Title");
-		myCfp.setSessionSummary("Description");
-		myCfp.setSpeakers("sebprunier");
-		myCfp.setSpeakersBios("here i am !");
+		// A CFP
+		aCfp = new Cfp();
+		aCfp.setCreationDate(new Date());
+		aCfp.setSubmitterEmail("sebastien.prunier(at)gmail(dot)com");
+		aCfp.setSessionType("Quickie");
+		aCfp.setSessionTitle("How Javascript will save the world !");
+		aCfp.setSessionSummary("15 minutes to explain how Javascript will save the world.");
+		aCfp.setSpeakers("Sebastien Prunier");
+		aCfp.setSpeakersBios("Software engineer @MosicaFR. Follow @sebprunier on Twitter !");
 
-		cfpService.createCfp(myCfp);
+		// Another CFP
+		anotherCfp = new Cfp();
+		anotherCfp.setCreationDate(new Date());
+		anotherCfp.setSubmitterEmail("frederic.bouquet(at)bonitasoft(dot)com");
+		anotherCfp.setSessionType("Conference");
+		anotherCfp.setSessionTitle("Add BPM to your Business Applications");
+		anotherCfp.setSessionSummary("Demo-oriented conference to show the power of Bonita Open Solution !");
+		anotherCfp.setSpeakers("Frederic Bouquet");
+		anotherCfp.setSpeakersBios("Bonita evangelist. Follow @bouquetf on Twitter !");
+
+		// Save them !
+		cfpService.createCfp(aCfp);
+		cfpService.createCfp(anotherCfp);
 	}
 
 	@PreDestroy
 	private void clearDB() {
-		cfpService.removeCfp(myCfp);
+		cfpService.removeCfp(aCfp);
+		cfpService.removeCfp(anotherCfp);
 	}
 }

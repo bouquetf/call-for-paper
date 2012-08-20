@@ -2,6 +2,7 @@ package org.bonitasoft.demo.callforpaper.rest;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,5 +36,11 @@ public class CfpRestService {
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
 	public void createCFP(Cfp cfp) {
 		cfpService.createCfp(cfp);
+	}
+
+	@DELETE
+	@Path("/{id}")
+	public void deleteCfp(@PathParam("id") String id) {
+		cfpService.removeCfp(Long.valueOf(id));
 	}
 }

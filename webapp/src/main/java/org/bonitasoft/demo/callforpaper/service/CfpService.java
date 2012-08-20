@@ -36,8 +36,12 @@ public class CfpService implements Serializable {
 		return q.getResultList();
 	}
 
+	public void removeCfp(Long id) {
+		em.remove(em.find(Cfp.class, id));
+	}
+
 	public void removeCfp(Cfp cfp) {
-		em.remove(cfp);
+		em.remove(em.merge(cfp));
 	}
 
 }
