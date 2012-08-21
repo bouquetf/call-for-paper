@@ -134,7 +134,24 @@
 			</div>
 			<div class="span7">
 				<h2>All submitted talks !</h2>
-				<span class="badge badge-success">// TODO</span>
+				<table class="table table-condensed" data-bind="visible:cfps().length > 0">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Session type</th>
+							<th>Session title</th>
+							<th>Speakers</th>
+						</tr>
+					</thead>
+					<tbody id="result-box" data-bind="foreach: cfps">
+						<tr>
+							<td data-bind="text: id"></td>
+							<td data-bind="text: sessionType"></td>
+							<td data-bind="text: sessionTitle"></td>
+							<td data-bind="text: speakers"></td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 
