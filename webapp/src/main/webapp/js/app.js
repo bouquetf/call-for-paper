@@ -11,11 +11,48 @@
 		self.speakersBios = speakersBios;
 	}
 
-	// ViewModel for KO
+	// ViewModel for Knockout
 	function AppViewModel() {
 		var self = this;
-		self.newCfp = ko.observable({});
+		// For Cfps list
 		self.cfps = ko.observableArray([]);
+		
+		// For a new Cfp
+		self.availableSessionTypes = ko.observableArray([ 'Conference', 'Tool In Action', 'Quickie' ]);
+		self.sessionType = ko.observable('Quickie');
+		self.submitterEmail = ko.observable('');
+		self.sessionTitle = ko.observable('');
+		self.sessionSummary = ko.observable('');
+		self.speakers = ko.observable('');
+		self.speakersBios = ko.observable('');
+		
+		// Submit a new Cfp
+		self.postCfp = function(formElement) {
+			var data = ko.toJSON({
+				"cfp" : new Cfp(self.sessionType, self.submitterEmail, self.sessionTitle, self.sessionSummary,
+						self.speakers, self.speakersBios)
+			});
+			$.ajax({
+				url : "/call-for-paper-webapp/cfp",
+				type : "POST",
+				data : data,
+				dataType : "json",
+				contentType : "application/json; charset=utf-8",
+				success : function(returnedData) {
+					// Re-load Cfps
+					$.getJSON('/call-for-paper-webapp/cfp', function(data) {
+						model.cfps(data.cfp);
+					});
+					// clear form
+					self.sessionType('Quickie');
+					self.submitterEmail('');
+					self.sessionTitle('');
+					self.sessionSummary('');
+					self.speakers('');
+					self.speakersBios('');
+				}
+			});
+		};
 	}
 	// Apply bindings
 	var model = new AppViewModel();
