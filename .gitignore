@@ -2,3 +2,10 @@
 *.iml
 *.ipr
 *.iws
+.project
+.classpath
+.settings/
+target/
+webapp/.project
+webapp/.classpath
+webapp/target

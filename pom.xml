@@ -6,9 +6,11 @@
     <groupId>org.bonitasoft.callforpaper</groupId>
     <artifactId>call-for-paper</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
+    <name>Call For Paper</name>
+    <description>Call For Paper Application</description>
+    <version>1.0-SNAPSHOT</version>
     <modules>
         <module>call-for-paper-boslib</module>
-    </modules>
-
+    	<module>call-for-paper-webapp</module>
+	</modules>
 </project>
