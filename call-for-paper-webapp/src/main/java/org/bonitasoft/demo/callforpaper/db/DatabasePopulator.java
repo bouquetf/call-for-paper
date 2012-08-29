@@ -14,12 +14,6 @@ import org.bonitasoft.demo.callforpaper.service.CfpService;
 
 @Singleton
 @Startup
-@DataSourceDefinition(className = "org.apache.derby.jdbc.EmbeddedDataSource",
-		name = "java:global/jdbc/applicationCfpDS",
-		user = "app",
-		password = "app",
-		databaseName = "applicationCfpDB",
-		properties = { "connectionAttributes=;create=true" })
 public class DatabasePopulator {
 
 	private Cfp aCfp;

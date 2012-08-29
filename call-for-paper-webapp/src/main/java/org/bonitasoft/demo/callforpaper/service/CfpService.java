@@ -1,15 +1,15 @@
 package org.bonitasoft.demo.callforpaper.service;
 
-import org.bonitasoft.demo.callforpaper.model.Cfp;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
+import org.bonitasoft.demo.callforpaper.model.Cfp;
 
 @Stateless
 public class CfpService implements Serializable {
