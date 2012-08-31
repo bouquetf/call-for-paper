@@ -1,5 +1,6 @@
 package org.bonitasoft.demo.callforpaper.service;
 
+import org.bonitasoft.callforpaper.boslib.ProcessHandler;
 import org.bonitasoft.demo.callforpaper.model.Cfp;
 
 import javax.ejb.Stateless;
@@ -10,10 +11,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-
 @Stateless
 public class CfpService implements Serializable {
-
 	private static final long serialVersionUID = -526852528138167511L;
 
 	private static final String QUERY_ALL = "Cfp.all";
@@ -24,7 +23,12 @@ public class CfpService implements Serializable {
 	public Cfp createCfp(Cfp cfp) {
 		cfp.setCreationDate(new Date());
 		em.persist(cfp);
-		return cfp;
+        try {
+            ProcessHandler.getProcessHandler("Paper_validation", "1.0").startProcess(cfp.getSubmitterEmail());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cfp;
 	}
 
 	public Cfp getCfp(Long id) {
@@ -43,5 +47,4 @@ public class CfpService implements Serializable {
 	public void removeCfp(Cfp cfp) {
 		em.remove(em.merge(cfp));
 	}
-
 }
