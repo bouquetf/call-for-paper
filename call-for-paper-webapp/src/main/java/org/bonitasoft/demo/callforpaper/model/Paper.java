@@ -11,20 +11,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Cfp.all", query = "select c from Cfp c") })
-public class Cfp {
+@NamedQueries({ @NamedQuery(name = "Paper.all", query = "select p from Paper p") })
+public class Paper {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@Version
-	private Long version;
 
 	@Column(nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -54,14 +50,6 @@ public class Cfp {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
 	}
 
 	public Date getCreationDate() {

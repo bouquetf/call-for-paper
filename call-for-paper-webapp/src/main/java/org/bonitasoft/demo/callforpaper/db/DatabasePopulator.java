@@ -4,28 +4,27 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.annotation.sql.DataSourceDefinition;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
 
-import org.bonitasoft.demo.callforpaper.model.Cfp;
-import org.bonitasoft.demo.callforpaper.service.CfpService;
+import org.bonitasoft.demo.callforpaper.model.Paper;
+import org.bonitasoft.demo.callforpaper.service.PaperService;
 
 @Singleton
 @Startup
 public class DatabasePopulator {
 
-	private Cfp aCfp;
-	private Cfp anotherCfp;
+	private Paper aCfp;
+	private Paper anotherCfp;
 
 	@Inject
-	private CfpService cfpService;
+	private PaperService cfpService;
 
 	@PostConstruct
 	private void populateDB() {
 		// A CFP
-		aCfp = new Cfp();
+		aCfp = new Paper();
 		aCfp.setCreationDate(new Date());
 		aCfp.setSubmitterEmail("sebastien.prunier(at)gmail(dot)com");
 		aCfp.setSessionType("Quickie");
@@ -35,7 +34,7 @@ public class DatabasePopulator {
 		aCfp.setSpeakersBios("Software engineer @MosicaFR. Follow @sebprunier on Twitter !");
 
 		// Another CFP
-		anotherCfp = new Cfp();
+		anotherCfp = new Paper();
 		anotherCfp.setCreationDate(new Date());
 		anotherCfp.setSubmitterEmail("frederic.bouquet(at)bonitasoft(dot)com");
 		anotherCfp.setSessionType("Conference");

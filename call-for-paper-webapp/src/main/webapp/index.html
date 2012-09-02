@@ -76,7 +76,7 @@
 		<div class="row">
 			<div class="span5">
 				<h2>Do you want to talk ?</h2>
-				<form class="form-horizontal well" data-bind="submit: postCfp">
+				<form class="form-horizontal well" data-bind="submit: postPaper">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="selectSessionType">Session Type</label>
@@ -127,7 +127,7 @@
 			</div>
 			<div class="span7">
 				<h2>All submitted talks !</h2>
-				<table class="table table-condensed" data-bind="visible:cfps().length > 0">
+				<table class="table table-condensed" data-bind="visible:papers().length > 0">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -136,7 +136,7 @@
 							<th>Speakers</th>
 						</tr>
 					</thead>
-					<tbody id="result-box" data-bind="foreach: cfps">
+					<tbody id="result-box" data-bind="foreach: papers">
 						<tr>
 							<td data-bind="text: id"></td>
 							<td data-bind="text: sessionType"></td>

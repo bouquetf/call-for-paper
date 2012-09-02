@@ -9,38 +9,38 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import org.bonitasoft.demo.callforpaper.model.Cfp;
+import org.bonitasoft.demo.callforpaper.model.Paper;
 
 @Stateless
-public class CfpService implements Serializable {
+public class PaperService implements Serializable {
 
 	private static final long serialVersionUID = -526852528138167511L;
 
-	private static final String QUERY_ALL = "Cfp.all";
+	private static final String QUERY_ALL = "Paper.all";
 
 	@Inject
 	private EntityManager em;
 
-	public Cfp createCfp(Cfp cfp) {
+	public Paper createCfp(Paper cfp) {
 		cfp.setCreationDate(new Date());
 		em.persist(cfp);
 		return cfp;
 	}
 
-	public Cfp getCfp(Long id) {
-		return em.find(Cfp.class, id);
+	public Paper getCfp(Long id) {
+		return em.find(Paper.class, id);
 	}
 
-	public List<Cfp> getAllCfp() {
-		TypedQuery<Cfp> q = em.createNamedQuery(QUERY_ALL, Cfp.class);
+	public List<Paper> getAllCfp() {
+		TypedQuery<Paper> q = em.createNamedQuery(QUERY_ALL, Paper.class);
 		return q.getResultList();
 	}
 
 	public void removeCfp(Long id) {
-		em.remove(em.find(Cfp.class, id));
+		em.remove(em.find(Paper.class, id));
 	}
 
-	public void removeCfp(Cfp cfp) {
+	public void removeCfp(Paper cfp) {
 		em.remove(em.merge(cfp));
 	}
 

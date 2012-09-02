@@ -10,31 +10,31 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.bonitasoft.demo.callforpaper.model.Cfp;
-import org.bonitasoft.demo.callforpaper.service.CfpService;
+import org.bonitasoft.demo.callforpaper.model.Paper;
+import org.bonitasoft.demo.callforpaper.service.PaperService;
 
-@Path("/cfp")
-public class CfpRestService {
+@Path("/paper")
+public class PaperRestService {
 
 	@Inject
-	private CfpService cfpService;
+	private PaperService cfpService;
 
 	@GET
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Cfp[] getAllCfp() {
-		return cfpService.getAllCfp().toArray(new Cfp[] {});
+	public Paper[] getAllCfp() {
+		return cfpService.getAllCfp().toArray(new Paper[] {});
 	}
 
 	@GET
 	@Path("/{id}")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Cfp getCfp(@PathParam("id") String id) {
+	public Paper getCfp(@PathParam("id") String id) {
 		return cfpService.getCfp(Long.valueOf(id));
 	}
 
 	@POST
 	@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public void createCFP(Cfp cfp) {
+	public void createCFP(Paper cfp) {
 		cfpService.createCfp(cfp);
 	}
 
