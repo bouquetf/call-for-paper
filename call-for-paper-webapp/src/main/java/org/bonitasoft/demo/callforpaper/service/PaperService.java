@@ -21,27 +21,27 @@ public class PaperService implements Serializable {
 	@Inject
 	private EntityManager em;
 
-	public Paper createCfp(Paper cfp) {
-		cfp.setCreationDate(new Date());
-		em.persist(cfp);
-		return cfp;
+	public Paper createPaper(Paper paper) {
+		paper.setCreationDate(new Date());
+		em.persist(paper);
+		return paper;
 	}
 
-	public Paper getCfp(Long id) {
+	public Paper getPaper(Long id) {
 		return em.find(Paper.class, id);
 	}
 
-	public List<Paper> getAllCfp() {
+	public List<Paper> getAllPapers() {
 		TypedQuery<Paper> q = em.createNamedQuery(QUERY_ALL, Paper.class);
 		return q.getResultList();
 	}
 
-	public void removeCfp(Long id) {
+	public void removePaper(Long id) {
 		em.remove(em.find(Paper.class, id));
 	}
 
-	public void removeCfp(Paper cfp) {
-		em.remove(em.merge(cfp));
+	public void removePaper(Paper paper) {
+		em.remove(em.merge(paper));
 	}
 
 }

@@ -15,42 +15,42 @@ import org.bonitasoft.demo.callforpaper.service.PaperService;
 @Startup
 public class DatabasePopulator {
 
-	private Paper aCfp;
-	private Paper anotherCfp;
+	private Paper aPaper;
+	private Paper anotherPaper;
 
 	@Inject
-	private PaperService cfpService;
+	private PaperService paperService;
 
 	@PostConstruct
 	private void populateDB() {
-		// A CFP
-		aCfp = new Paper();
-		aCfp.setCreationDate(new Date());
-		aCfp.setSubmitterEmail("sebastien.prunier(at)gmail(dot)com");
-		aCfp.setSessionType("Quickie");
-		aCfp.setSessionTitle("How Javascript will save the world !");
-		aCfp.setSessionSummary("15 minutes to explain how Javascript will save the world.");
-		aCfp.setSpeakers("Sebastien Prunier");
-		aCfp.setSpeakersBios("Software engineer @MosicaFR. Follow @sebprunier on Twitter !");
+		// A Paper
+		aPaper = new Paper();
+		aPaper.setCreationDate(new Date());
+		aPaper.setSubmitterEmail("sebastien.prunier(at)gmail(dot)com");
+		aPaper.setSessionType("Quickie");
+		aPaper.setSessionTitle("How Javascript will save the world !");
+		aPaper.setSessionSummary("15 minutes to explain how Javascript will save the world.");
+		aPaper.setSpeakers("Sebastien Prunier");
+		aPaper.setSpeakersBios("Software engineer @MosicaFR. Follow @sebprunier on Twitter !");
 
-		// Another CFP
-		anotherCfp = new Paper();
-		anotherCfp.setCreationDate(new Date());
-		anotherCfp.setSubmitterEmail("frederic.bouquet(at)bonitasoft(dot)com");
-		anotherCfp.setSessionType("Conference");
-		anotherCfp.setSessionTitle("Add BPM to your Business Applications");
-		anotherCfp.setSessionSummary("Demo-oriented conference to show the power of Bonita Open Solution !");
-		anotherCfp.setSpeakers("Frederic Bouquet");
-		anotherCfp.setSpeakersBios("Bonita evangelist. Follow @bouquetf on Twitter !");
+		// Another Paper
+		anotherPaper = new Paper();
+		anotherPaper.setCreationDate(new Date());
+		anotherPaper.setSubmitterEmail("frederic.bouquet(at)bonitasoft(dot)com");
+		anotherPaper.setSessionType("Conference");
+		anotherPaper.setSessionTitle("Add BPM to your Business Applications");
+		anotherPaper.setSessionSummary("Demo-oriented conference to show the power of Bonita Open Solution !");
+		anotherPaper.setSpeakers("Frederic Bouquet");
+		anotherPaper.setSpeakersBios("Bonita evangelist. Follow @bouquetf on Twitter !");
 
 		// Save them !
-		cfpService.createCfp(aCfp);
-		cfpService.createCfp(anotherCfp);
+		paperService.createPaper(aPaper);
+		paperService.createPaper(anotherPaper);
 	}
 
 	@PreDestroy
 	private void clearDB() {
-		cfpService.removeCfp(aCfp);
-		cfpService.removeCfp(anotherCfp);
+		paperService.removePaper(aPaper);
+		paperService.removePaper(anotherPaper);
 	}
 }

@@ -1,11 +1,12 @@
 {
     "paper": {
-        "creationDate": "2012-08-17T15:56:33.426+02:00",
-        "sessionSummary": "Description",
-        "sessionTitle": "Title",
-        "sessionType": "Conference",
-        "speakers": "sebprunier",
-        "speakersBios": "here i am !",
-        "submitterEmail": "spr@pebprunier.com"
+        "creationDate": "2012-09-02T20:57:45.955+02:00",
+        "id": 1,
+        "sessionSummary": "15 minutes to explain how Javascript will save the world.",
+        "sessionTitle": "How Javascript will save the world !",
+        "sessionType": "Quickie",
+        "speakers": "Sebastien Prunier",
+        "speakersBios": "Software engineer @MosicaFR. Follow @sebprunier on Twitter !",
+        "submitterEmail": "sebastien.prunier(at)gmail(dot)com"
     }
 }

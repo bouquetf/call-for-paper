@@ -14,10 +14,10 @@
 	// ViewModel for Knockout
 	function AppViewModel() {
 		var self = this;
-		// For Cfps list
+		// For Papers list
 		self.papers = ko.observableArray([]);
 		
-		// For a new Cfp
+		// For a new Paper
 		self.availableSessionTypes = ko.observableArray([ 'Conference', 'Tool In Action', 'Quickie' ]);
 		self.sessionType = ko.observable('Quickie');
 		self.submitterEmail = ko.observable('');
@@ -26,7 +26,7 @@
 		self.speakers = ko.observable('');
 		self.speakersBios = ko.observable('');
 		
-		// Submit a new Cfp
+		// Submit a new Paper
 		self.postPaper = function() {
 			var data = ko.toJSON({
 				"paper" : new Paper(self.sessionType, self.submitterEmail, self.sessionTitle, self.sessionSummary,
@@ -39,7 +39,7 @@
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function() {
-					// Re-load Cfps
+					// Re-load Papers
 					$.getJSON('paper', function(data) {
 						model.papers(data.paper);
 					});
@@ -64,7 +64,7 @@
 		// init Twitter Bootstrap popover.
 		$('#sessionTypeDetails').popover();
 
-		// load existing Cfps
+		// load existing Papers
 		$.getJSON('paper', function(data) {
 			model.papers(data.paper);
 		});

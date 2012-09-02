@@ -26,7 +26,7 @@ public class Vote {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "paper_fk", nullable = false, insertable = false, updatable = false)
-	private Paper cfp;
+	private Paper paper;
 
 	public Long getId() {
 		return id;
@@ -52,12 +52,12 @@ public class Vote {
 		this.vote = vote;
 	}
 
-	public Paper getCfp() {
-		return cfp;
+	public Paper getPaper() {
+		return paper;
 	}
 
-	public void setCfp(Paper cfp) {
-		this.cfp = cfp;
+	public void setPaper(Paper paper) {
+		this.paper = paper;
 	}
 
 }
