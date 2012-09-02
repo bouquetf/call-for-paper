@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,7 +17,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-@NamedQueries({ @NamedQuery(name = "Paper.all", query = "select p from Paper p") })
+@NamedQueries({ @NamedQuery(name = "Paper.all", query = "select p from Paper p"),
+		@NamedQuery(name = "Paper.bystate", query = "select p from Paper p where p.state = :state") })
 public class Paper {
 
 	@Id
@@ -43,6 +46,10 @@ public class Paper {
 
 	@Column(nullable = false)
 	private String speakersBios;
+
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private PaperState state;
 
 	public Long getId() {
 		return id;
@@ -108,4 +115,11 @@ public class Paper {
 		this.speakersBios = speakersBios;
 	}
 
+	public PaperState getState() {
+		return state;
+	}
+
+	public void setState(PaperState state) {
+		this.state = state;
+	}
 }

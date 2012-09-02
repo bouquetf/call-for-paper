@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import org.bonitasoft.demo.callforpaper.model.Paper;
+import org.bonitasoft.demo.callforpaper.model.PaperState;
 
 @Stateless
 public class PaperService implements Serializable {
@@ -18,12 +19,20 @@ public class PaperService implements Serializable {
 
 	private static final String QUERY_ALL = "Paper.all";
 
+	private static final String QUERY_BY_STATUS = "Paper.bystate";
+
 	@Inject
 	private EntityManager em;
 
 	public Paper createPaper(Paper paper) {
 		paper.setCreationDate(new Date());
+		paper.setState(PaperState.NEW);
 		em.persist(paper);
+		return paper;
+	}
+
+	public Paper updatePaper(Paper paper) {
+		em.merge(paper);
 		return paper;
 	}
 
@@ -33,6 +42,12 @@ public class PaperService implements Serializable {
 
 	public List<Paper> getAllPapers() {
 		TypedQuery<Paper> q = em.createNamedQuery(QUERY_ALL, Paper.class);
+		return q.getResultList();
+	}
+
+	public List<Paper> getPapersByState(String state) {
+		TypedQuery<Paper> q = em.createNamedQuery(QUERY_BY_STATUS, Paper.class);
+		q.setParameter("state", PaperState.valueOf(state));
 		return q.getResultList();
 	}
 

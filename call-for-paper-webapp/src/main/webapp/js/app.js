@@ -16,7 +16,7 @@
 		var self = this;
 		// For Papers list
 		self.papers = ko.observableArray([]);
-		
+
 		// For a new Paper
 		self.availableSessionTypes = ko.observableArray([ 'Conference', 'Tool In Action', 'Quickie' ]);
 		self.sessionType = ko.observable('Quickie');
@@ -25,6 +25,7 @@
 		self.sessionSummary = ko.observable('');
 		self.speakers = ko.observable('');
 		self.speakersBios = ko.observable('');
+		self.talkSubmitted = ko.observable(false);
 		
 		// Submit a new Paper
 		self.postPaper = function() {
@@ -39,10 +40,8 @@
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function() {
-					// Re-load Papers
-					$.getJSON('paper', function(data) {
-						model.papers(data.paper);
-					});
+					// update flags
+					self.talkSubmitted(true);
 					// clear form
 					self.sessionType('Quickie');
 					self.submitterEmail('');
@@ -65,7 +64,7 @@
 		$('#sessionTypeDetails').popover();
 
 		// load existing Papers
-		$.getJSON('paper', function(data) {
+		$.getJSON('paper?state=ACCEPTED', function(data) {
 			model.papers(data.paper);
 		});
 	});

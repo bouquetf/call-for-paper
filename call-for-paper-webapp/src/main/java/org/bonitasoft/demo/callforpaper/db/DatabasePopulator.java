@@ -9,6 +9,7 @@ import javax.ejb.Startup;
 import javax.inject.Inject;
 
 import org.bonitasoft.demo.callforpaper.model.Paper;
+import org.bonitasoft.demo.callforpaper.model.PaperState;
 import org.bonitasoft.demo.callforpaper.service.PaperService;
 
 @Singleton
@@ -46,6 +47,12 @@ public class DatabasePopulator {
 		// Save them !
 		paperService.createPaper(aPaper);
 		paperService.createPaper(anotherPaper);
+
+		// Update states
+		aPaper.setState(PaperState.REFUSED);
+		anotherPaper.setState(PaperState.ACCEPTED);
+		paperService.updatePaper(aPaper);
+		paperService.updatePaper(anotherPaper);
 	}
 
 	@PreDestroy

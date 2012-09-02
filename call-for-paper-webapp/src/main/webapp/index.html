@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Call For Paper Application</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	
-	<!-- Le styles -->
-	<link href="./css/bootstrap-cerulean-2.0.4.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			padding-top: 60px;
-			padding-bottom: 40px;
-		}
-	</style>
-	<link href="./css/bootstrap-responsive-2.0.4.min.css" rel="stylesheet">
-	
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
+<meta charset="utf-8">
+<title>Call For Paper Application</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Le styles -->
+<link href="./css/bootstrap-cerulean-2.0.4.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
+<link href="./css/bootstrap-responsive-2.0.4.min.css" rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	
-	<!-- Le fav and touch icons -->
-	<link rel="shortcut icon" href="favicon.ico">
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="favicon.ico">
 
 </head>
 
 <body>
 
-	<a href="https://github.com/bouquetf/call-for-paper"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"
-		src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
+	<a href="https://github.com/bouquetf/call-for-paper"><img
+		style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"
+		src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"
+		alt="Fork me on GitHub"></a>
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+				<a class="btn btn-navbar" data-toggle="collapse"
+					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 				</a> <a class="brand" href="#">Call For Papers Application</a>
 				<div class="nav-collapse">
@@ -51,72 +54,95 @@
 	<div class="container">
 
 		<!-- Main hero unit for a primary marketing message or call to action -->
-			<div class="row well">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				<div class="span2">
-					<img src="./img/Nuvola_apps_kontact.png" alt="Nuvola_apps_kontact.png" />
-				</div>
-				<div class="span9">
-					<h2>Call For Papers</h2>
-					<p style="text-align: justify;">
-						<i>A call for papers (CFP) is a method used in academic and other contexts for collecting book or journal
-							articles or conference presentations. A CFP usually is sent to interested parties, describing the broad theme,
-							the occasion for the CFP, formalities such as what kind of abstract (summary) has to be submitted to whom and a
-							deadline. <br />A CFP is usually distributed using a mailing list or on specialized online services. Papers are
-							usually submitted using an online abstract or paper management service.
-						</i>
-					</p>
-					<p style="text-align: right;">
-						from <a href="http://en.wikipedia.org/wiki/Call_for_papers">Wikipedia</a>, the Free Encyclopedia.
-					</p>
-				</div>
+		<div class="row well">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<div class="span2">
+				<img src="./img/Nuvola_apps_kontact.png"
+					alt="Nuvola_apps_kontact.png" />
 			</div>
+			<div class="span9">
+				<h2>Call For Papers</h2>
+				<p style="text-align: justify;">
+					<i>A call for papers (CFP) is a method used in academic and
+						other contexts for collecting book or journal articles or
+						conference presentations. A CFP usually is sent to interested
+						parties, describing the broad theme, the occasion for the CFP,
+						formalities such as what kind of abstract (summary) has to be
+						submitted to whom and a deadline. <br />A CFP is usually
+						distributed using a mailing list or on specialized online
+						services. Papers are usually submitted using an online abstract or
+						paper management service.
+					</i>
+				</p>
+				<p style="text-align: right;">
+					from <a href="http://en.wikipedia.org/wiki/Call_for_papers">Wikipedia</a>,
+					the Free Encyclopedia.
+				</p>
+			</div>
+		</div>
 
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="span5">
 				<h2>Do you want to talk ?</h2>
+				<div class="alert alert-success" data-bind="visible: talkSubmitted">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					Your talk has been submitted !
+				</div>
 				<form class="form-horizontal well" data-bind="submit: postPaper">
 					<fieldset>
 						<div class="control-group">
-							<label class="control-label" for="selectSessionType">Session Type</label>
+							<label class="control-label" for="selectSessionType">Session
+								Type</label>
 							<div class="controls">
-								<select id="selectSessionType" data-bind="options: availableSessionTypes, value: sessionType"></select>
-								<a id="sessionTypeDetails" class="label label-info" href="#" rel="popover"
+								<select id="selectSessionType"
+									data-bind="options: availableSessionTypes, value: sessionType"></select>
+								<a id="sessionTypeDetails" class="label label-info" href="#"
+									rel="popover"
 									data-content="<ul><li><b>Conference</b> (55')</li><li><b>Tools in Action</b> (55')</li><li><b>Quicky</b> (15')</li></ul>"
 									data-original-title="Session types">?</a>
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputSubmitterEmail">Submitter email</label>
+							<label class="control-label" for="inputSubmitterEmail">Submitter
+								email</label>
 							<div class="controls">
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-envelope"></i></span><input class="input-large" id="inputSubmitterEmail" type="text"  data-bind="value: submitterEmail">
+									<span class="add-on"><i class="icon-envelope"></i></span><input
+										class="input-large" id="inputSubmitterEmail" type="text"
+										data-bind="value: submitterEmail">
 								</div>
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="inputSessionTitle">Session Title</label>
+							<label class="control-label" for="inputSessionTitle">Session
+								Title</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="inputSessionTitle" data-bind="value: sessionTitle">
+								<input type="text" class="input-xlarge" id="inputSessionTitle"
+									data-bind="value: sessionTitle">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="textareaSessionSummary">Session Summary</label>
+							<label class="control-label" for="textareaSessionSummary">Session
+								Summary</label>
 							<div class="controls">
-								<textarea class="input-xlarge" id="textareaSessionSummary" rows="3" data-bind="value: sessionSummary"></textarea>
+								<textarea class="input-xlarge" id="textareaSessionSummary"
+									rows="3" data-bind="value: sessionSummary"></textarea>
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="inputSpeakers">Speaker(s)</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge" id="inputSpeakers" data-bind="value: speakers">
+								<input type="text" class="input-xlarge" id="inputSpeakers"
+									data-bind="value: speakers">
 							</div>
 						</div>
 						<div class="control-group">
-							<label class="control-label" for="textareaSpeakersBio">Speaker(s) Bio</label>
+							<label class="control-label" for="textareaSpeakersBio">Speaker(s)
+								Bio</label>
 							<div class="controls">
-								<textarea class="input-xlarge" id="textareaSpeakersBio" rows="3" data-bind="value: speakersBios"></textarea>
+								<textarea class="input-xlarge" id="textareaSpeakersBio" rows="3"
+									data-bind="value: speakersBios"></textarea>
 							</div>
 						</div>
 						<div class="form-actions">
@@ -126,8 +152,9 @@
 				</form>
 			</div>
 			<div class="span7">
-				<h2>All submitted talks !</h2>
-				<table class="table table-condensed" data-bind="visible:papers().length > 0">
+				<h2>All accepted talks !</h2>
+				<table class="table table-condensed"
+					data-bind="visible:papers().length > 0">
 					<thead>
 						<tr>
 							<th>#</th>
