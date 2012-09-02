@@ -25,7 +25,7 @@ public class Vote {
 	private Boolean vote;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "paper_fk", nullable = false, insertable = false, updatable = false)
+	@JoinColumn(name = "paper_fk", nullable = false)
 	private Paper paper;
 
 	public Long getId() {
