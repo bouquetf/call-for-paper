@@ -8,10 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
+@NamedQueries({ @NamedQuery(name = "Vote.all", query = "select v from Vote v"),
+	@NamedQuery(name = "Vote.bypaper", query = "select v from Vote v where v.paper.id = :paperid") })
 public class Vote {
 
 	@Id
