@@ -1,7 +1,7 @@
 (function($, ko) {
 
-	// Class to represent a Cfp entry.
-	function Cfp(sessionType, submitterEmail, sessionTitle, sessionSummary, speakers, speakersBios) {
+	// Class to represent a Paper entry.
+	function Paper(sessionType, submitterEmail, sessionTitle, sessionSummary, speakers, speakersBios) {
 		var self = this;
 		self.sessionType = sessionType;
 		self.submitterEmail = submitterEmail;
@@ -14,10 +14,10 @@
 	// ViewModel for Knockout
 	function AppViewModel() {
 		var self = this;
-		// For Cfps list
-		self.cfps = ko.observableArray([]);
-		
-		// For a new Cfp
+		// For Papers list
+		self.papers = ko.observableArray([]);
+
+		// For a new Paper
 		self.availableSessionTypes = ko.observableArray([ 'Conference', 'Tool In Action', 'Quickie' ]);
 		self.sessionType = ko.observable('Quickie');
 		self.submitterEmail = ko.observable('');
@@ -25,24 +25,23 @@
 		self.sessionSummary = ko.observable('');
 		self.speakers = ko.observable('');
 		self.speakersBios = ko.observable('');
+		self.talkSubmitted = ko.observable(false);
 		
-		// Submit a new Cfp
-		self.postCfp = function() {
+		// Submit a new Paper
+		self.postPaper = function() {
 			var data = ko.toJSON({
-				"cfp" : new Cfp(self.sessionType, self.submitterEmail, self.sessionTitle, self.sessionSummary,
+				"paper" : new Paper(self.sessionType, self.submitterEmail, self.sessionTitle, self.sessionSummary,
 						self.speakers, self.speakersBios)
 			});
 			$.ajax({
-				url : "cfp",
+				url : "paper",
 				type : "POST",
 				data : data,
 				dataType : "json",
 				contentType : "application/json; charset=utf-8",
 				success : function() {
-					// Re-load Cfps
-					$.getJSON('/call-for-paper-webapp/cfp', function(data) {
-						model.cfps(data.cfp);
-					});
+					// update flags
+					self.talkSubmitted(true);
 					// clear form
 					self.sessionType('Quickie');
 					self.submitterEmail('');
@@ -64,9 +63,9 @@
 		// init Twitter Bootstrap popover.
 		$('#sessionTypeDetails').popover();
 
-		// load existing Cfps
-		$.getJSON('cfp', function(data) {
-			model.cfps(data.cfp);
+		// load existing Papers
+		$.getJSON('paper?state=ACCEPTED', function(data) {
+			model.papers(data.paper);
 		});
 	});
 
