@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Call For Paper Application</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	
-	<!-- Le styles -->
-	<link href="./css/bootstrap-cerulean-2.0.4.min.css" rel="stylesheet">
-	<style type="text/css">
-		body {
-			padding-top: 60px;
-			padding-bottom: 40px;
-		}
-	</style>
-	<link href="./css/bootstrap-responsive-2.0.4.min.css" rel="stylesheet">
-	
-	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-	<!--[if lt IE 9]>
+<meta charset="utf-8">
+<title>Call For Paper Application</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<!-- Le styles -->
+<link href="./css/bootstrap-cerulean-2.0.4.min.css" rel="stylesheet">
+<style type="text/css">
+body {
+	padding-top: 60px;
+	padding-bottom: 40px;
+}
+</style>
+<link href="./css/bootstrap-responsive-2.0.4.min.css" rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
 		<script type="text/javascript" src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
-	
-	<!-- Le fav and touch icons -->
-	<link rel="shortcut icon" href="favicon.ico">
+
+<!-- Le fav and touch icons -->
+<link rel="shortcut icon" href="favicon.ico">
 
 </head>
 
 <body>
-
-	<a href="https://github.com/bouquetf/call-for-paper"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;"
-		src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png" alt="Fork me on GitHub"></a>
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
@@ -51,38 +48,42 @@
 	<div class="container">
 
 		<!-- Main hero unit for a primary marketing message or call to action -->
-			<div class="row well">
-				<button type="button" class="close" data-dismiss="alert">×</button>
-				<div class="span2">
-					<img src="./img/Nuvola_apps_kontact.png" alt="Nuvola_apps_kontact.png" />
-				</div>
-				<div class="span9">
-					<h2>Call For Papers</h2>
-					<p style="text-align: justify;">
-						<i>A call for papers (CFP) is a method used in academic and other contexts for collecting book or journal
-							articles or conference presentations. A CFP usually is sent to interested parties, describing the broad theme,
-							the occasion for the CFP, formalities such as what kind of abstract (summary) has to be submitted to whom and a
-							deadline. <br />A CFP is usually distributed using a mailing list or on specialized online services. Papers are
-							usually submitted using an online abstract or paper management service.
-						</i>
-					</p>
-					<p style="text-align: right;">
-						from <a href="http://en.wikipedia.org/wiki/Call_for_papers">Wikipedia</a>, the Free Encyclopedia.
-					</p>
-				</div>
+		<div class="row well">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			<div class="span2">
+				<img src="./img/Nuvola_apps_kontact.png" alt="Nuvola_apps_kontact.png" />
 			</div>
+			<div class="span9">
+				<h2>Call For Papers</h2>
+				<p style="text-align: justify;">
+					<i>A call for papers (CFP) is a method used in academic and other contexts for collecting book or journal
+						articles or conference presentations. A CFP usually is sent to interested parties, describing the broad theme, the
+						occasion for the CFP, formalities such as what kind of abstract (summary) has to be submitted to whom and a
+						deadline. <br />A CFP is usually distributed using a mailing list or on specialized online services. Papers are
+						usually submitted using an online abstract or paper management service.
+					</i>
+				</p>
+				<p style="text-align: right;">
+					from <a href="http://en.wikipedia.org/wiki/Call_for_papers">Wikipedia</a>, the Free Encyclopedia.
+				</p>
+			</div>
+		</div>
 
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="span5">
 				<h2>Do you want to talk ?</h2>
-				<form class="form-horizontal well" data-bind="submit: postCfp">
+				<div class="alert alert-success" data-bind="visible: talkSubmitted">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+					Your talk has been submitted !
+				</div>
+				<form class="form-horizontal well" data-bind="submit: postPaper">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="selectSessionType">Session Type</label>
 							<div class="controls">
-								<select id="selectSessionType" data-bind="options: availableSessionTypes, value: sessionType"></select>
-								<a id="sessionTypeDetails" class="label label-info" href="#" rel="popover"
+								<select id="selectSessionType" data-bind="options: availableSessionTypes, value: sessionType"></select> <a
+									id="sessionTypeDetails" class="label label-info" href="#" rel="popover"
 									data-content="<ul><li><b>Conference</b> (55')</li><li><b>Tools in Action</b> (55')</li><li><b>Quicky</b> (15')</li></ul>"
 									data-original-title="Session types">?</a>
 							</div>
@@ -91,7 +92,8 @@
 							<label class="control-label" for="inputSubmitterEmail">Submitter email</label>
 							<div class="controls">
 								<div class="input-prepend">
-									<span class="add-on"><i class="icon-envelope"></i></span><input class="input-large" id="inputSubmitterEmail" type="text"  data-bind="value: submitterEmail">
+									<span class="add-on"><i class="icon-envelope"></i></span><input class="input-large" id="inputSubmitterEmail"
+										type="text" data-bind="value: submitterEmail">
 								</div>
 							</div>
 						</div>
@@ -126,8 +128,8 @@
 				</form>
 			</div>
 			<div class="span7">
-				<h2>All submitted talks !</h2>
-				<table class="table table-condensed" data-bind="visible:cfps().length > 0">
+				<h2>All accepted talks !</h2>
+				<table class="table table-condensed" data-bind="visible:papers().length > 0">
 					<thead>
 						<tr>
 							<th>#</th>
@@ -136,7 +138,7 @@
 							<th>Speakers</th>
 						</tr>
 					</thead>
-					<tbody id="result-box" data-bind="foreach: cfps">
+					<tbody id="result-box" data-bind="foreach: papers">
 						<tr>
 							<td data-bind="text: id"></td>
 							<td data-bind="text: sessionType"></td>
@@ -151,7 +153,11 @@
 		<hr />
 
 		<footer>
-			<p>Developers : @bouquetf - @sebprunier</p>
+			<p>
+				<i class="icon-user"></i> Developers : <a href="https://twitter.com/bouquetf">@bouquetf</a> - <a
+					href="https://twitter.com/bouquetf">@sebprunier</a> | <i class="icon-file"></i> Source code : <a
+					href="https://github.com/bouquetf/call-for-paper">Fork on github</a>
+			</p>
 		</footer>
 
 	</div>
@@ -163,8 +169,6 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="./js/jquery-1.8.0.min.js"></script>
 	<script src="./js/bootstrap-2.0.4.min.js"></script>
-	<script src="./js/bootstrap-tooltip-2.0.4.js"></script>
-	<script src="./js/bootstrap-popover-2.0.4.js"></script>
 	<script src="./js/knockout-2.1.0.js"></script>
 	<script src="./js/app.js"></script>
 
