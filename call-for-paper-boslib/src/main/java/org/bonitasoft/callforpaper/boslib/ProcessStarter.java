@@ -7,7 +7,6 @@ import org.bonitasoft.callforpaper.boslib.dto.ProcessInstanceUUID;
 
 import javax.security.auth.login.LoginException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ProcessStarter {
     public static final String SERVER_ADDRESS = "http://localhost:9090";
@@ -19,10 +18,12 @@ public class ProcessStarter {
     public static final String CONTENT_TYPE_HEADER = "Content-Type";
     public static final String ENCODING = "application/x-www-form-urlencoded";
     public static final String EMAIL_VARIABLE_NAME = "sender_email";
+    public static final String PAPER_ID_VARIABLE_NAME = "paper_id";
     private String email;
     private String processVersion;
     private String processName;
     private String username;
+    private Long id;
 
 
     public ProcessStarter(String username) throws LoginException {
@@ -31,6 +32,11 @@ public class ProcessStarter {
 
     public ProcessStarter setEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public ProcessStarter setId(Long id) {
+        this.id = id;
         return this;
     }
 
@@ -68,11 +74,11 @@ public class ProcessStarter {
     }
 
     private String buildRequestBody() {
-        Map<String,String> variables = new HashMap<String, String>();
+        HashMap<String, Object> variables = new HashMap<String, Object>();
         variables.put(EMAIL_VARIABLE_NAME, email);
+        variables.put(PAPER_ID_VARIABLE_NAME, id);
         XStream xStream = new XStream();
 
         return "variables="+xStream.toXML(variables);
     }
-
 }

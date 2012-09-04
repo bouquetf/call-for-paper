@@ -17,11 +17,12 @@ public class ProcessHandler {
         return processHandler;
     }
 
-    public String startProcess(String email) throws Exception {
+    public String startProcess(String email, Long id) throws Exception {
         return new ProcessStarter(USERNAME)
                 .setProcessName(processName)
                 .setProcessVersion(processVersion)
                 .setEmail(email)
+                .setId(id)
                 .execute();
     }
 }

@@ -30,7 +30,7 @@ public class PaperService implements Serializable {
 		paper.setState(PaperState.NEW);
         em.persist(paper);
         try {
-            ProcessHandler.getProcessHandler("Paper_validation", "1.0").startProcess(paper.getSubmitterEmail());
+            ProcessHandler.getProcessHandler("Paper_validation", "1.0").startProcess(paper.getSubmitterEmail(), paper.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }
