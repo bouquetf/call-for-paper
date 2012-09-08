@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.bonitasoft.callforpaper.boslib.ProcessHandler;
 import org.bonitasoft.demo.callforpaper.model.Paper;
 import org.bonitasoft.demo.callforpaper.model.PaperState;
 
@@ -27,8 +28,14 @@ public class PaperService implements Serializable {
 	public Paper createPaper(Paper paper) {
 		paper.setCreationDate(new Date());
 		paper.setState(PaperState.NEW);
-		em.persist(paper);
-		return paper;
+        em.persist(paper);
+        try {
+            ProcessHandler.getProcessHandler("Paper_validation", "1.0").startProcess(paper.getSubmitterEmail(), paper.getId());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return paper;
 	}
 
 	public Paper updatePaper(Paper paper) {
