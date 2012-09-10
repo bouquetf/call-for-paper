@@ -51,8 +51,8 @@ public class DatabasePopulator {
 				.setSpeakersBios("Bonita evangelist. Follow @bouquetf on Twitter !");
 
 		// Save papers !
-		paperService.createPaper(aPaper);
-		paperService.createPaper(anotherPaper);
+		paperService.createPaperWithoutStartingProcess(aPaper);
+		paperService.createPaperWithoutStartingProcess(anotherPaper);
 
 		// Add votes
 		Vote v1 = new Vote();
