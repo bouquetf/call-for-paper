@@ -3,8 +3,20 @@ call-for-paper
 
 A simple call for paper application.
 
-The "call-for-paper-webapp" module works with the TomEE JEE 6 server (1.0.0 Plus version, because Apache TomEE Plus delivers all that is in the Web Profile, plus EJB Full, Java EE Connector Architecture, JMS, JAX-WS and and JAX-RS).
+Installation instructions
+=========================
 
+First, start a BOS-5.7.2 studio and import the process found in processes folder.
+Set initial value for conf_* process variables for your environment.
+Hit run and click on the link to the user experience in the top right corner.
+
+Then, build the project with the command
+```
+mvm package
+```
+
+Finally, copy the war file which can be found in call-for-paper-webapp/target to the webapp folder of a tomEE 1.0.0 Plus
+webapp folder.
 Configure the following resources in the tomee.xml configuration file : 
 ```xml
 <Resource id="cfpDatabase" type="DataSource">
@@ -15,3 +27,4 @@ Configure the following resources in the tomee.xml configuration file :
   JtaManaged true
 </Resource>
 ```
+Run tomEE by launching bin/startup.{bat|sh} script.
