@@ -26,7 +26,7 @@ public class Vote {
 	private String juryMember;
 
 	@Column(nullable = false)
-	private Boolean vote;
+	private Boolean choice;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "paper_fk", nullable = false)
@@ -48,12 +48,12 @@ public class Vote {
 		this.juryMember = juryMember;
 	}
 
-	public Boolean getVote() {
-		return vote;
+	public Boolean getChoice() {
+		return choice;
 	}
 
-	public void setVote(Boolean vote) {
-		this.vote = vote;
+	public void setChoice(Boolean choice) {
+		this.choice = choice;
 	}
 
 	public Paper getPaper() {

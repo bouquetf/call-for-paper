@@ -139,7 +139,7 @@ body {
 						</tr>
 					</thead>
 					<tbody id="result-box" data-bind="foreach: papers">
-						<tr>
+						<tr data-bind="click: $root.selectPaper">
 							<td data-bind="text: id"></td>
 							<td data-bind="text: sessionType"></td>
 							<td data-bind="text: sessionTitle"></td>
@@ -147,6 +147,23 @@ body {
 						</tr>
 					</tbody>
 				</table>
+				<h2 data-bind="visible: selectedPaper().id">Talk details</h2>
+				<div class="well" data-bind="visible: selectedPaper().id">
+					<p>
+						<i class="icon-bullhorn"></i> <strong data-bind="text: selectedPaper().sessionTitle"></strong>
+					</p>
+					<p data-bind="text: selectedPaper().sessionSummary"></p>
+					<p>
+						<i class="icon-user"></i> <strong data-bind="text: selectedPaper().speakers"></strong>
+					</p>
+					<p data-bind="text: selectedPaper().speakersBios"></p>
+					<hr />
+					<p>
+						<strong>Jury votes</strong> <i class="icon-thumbs-up"></i> <span class="badge badge-success"
+							data-bind="text: selectedPaperVotes().ok"></span> <i class="icon-thumbs-down"></i> <span
+							class="badge badge-important" data-bind="text: selectedPaperVotes().ko"></span>
+					</p>
+				</div>
 			</div>
 		</div>
 

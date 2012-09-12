@@ -1,7 +1,7 @@
 {
     "vote": {
         "juryMember" : "Jury Member",
-        "vote" : true,
+        "choice" : true,
         "paper" : {
             "id" : "1"
         }

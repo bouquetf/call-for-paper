@@ -16,6 +16,30 @@
 		var self = this;
 		// For Papers list
 		self.papers = ko.observableArray([]);
+		self.selectedPaper = ko.observable({});
+		self.selectedPaperVotes = ko.observable({
+			ok : 0,
+			ko : 0
+		});
+		self.selectPaper = function(paper) {
+			self.selectedPaper(paper);
+			var voteValues = {
+				ok : 0,
+				ko : 0
+			};
+			$.getJSON('vote?paperid=' + paper.id, function(votes) {
+				votes.vote.map(function(vote) {
+					if (vote.choice) {
+						voteValues.ok += 1;
+					} else {
+						voteValues.ko += 1;
+					}
+				});
+			}).complete(function() {
+				self.selectedPaperVotes(voteValues);
+			});
+
+		};
 
 		// For a new Paper
 		self.availableSessionTypes = ko.observableArray([ 'Conference', 'Tool In Action', 'Quickie' ]);
@@ -26,7 +50,7 @@
 		self.speakers = ko.observable('');
 		self.speakersBios = ko.observable('');
 		self.talkSubmitted = ko.observable(false);
-		
+
 		// Submit a new Paper
 		self.postPaper = function() {
 			var data = ko.toJSON({
