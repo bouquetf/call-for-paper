@@ -38,6 +38,14 @@ public class PaperService implements Serializable {
         return paper;
 	}
 
+    public Paper createPaperWithoutStartingProcess(Paper paper) {
+        paper.setCreationDate(new Date());
+        paper.setState(PaperState.NEW);
+        em.persist(paper);
+
+        return paper;
+    }
+
 	public Paper updatePaper(Paper paper) {
 		em.merge(paper);
 		return paper;
